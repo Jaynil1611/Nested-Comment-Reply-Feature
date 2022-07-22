@@ -6,32 +6,29 @@ const AddReply = (props) => {
   const [commentText, setCommentText] = useState("");
 
   const updateCommentList = (prevList, newComment) => {
-    const updatedList = prevList.map((comment) => {
-      if (comment.id === parentComment.id) {
-        return {
-          ...comment,
-          children: comment.children.concat(newComment),
-        };
-      }
-      return {
-        ...comment,
-        children: updateCommentList(comment.children, newComment),
-      };
-    });
-    console.log({ updatedList });
-    return updatedList;
+    const updatedParentComment = {
+      ...parentComment,
+      children: parentComment.children.concat(newComment.id),
+    };
+    return {
+      ...prevList,
+      [parentComment.id]: updatedParentComment,
+      [newComment.id]: newComment,
+    };
   };
 
   const handleAddComment = () => {
-    const newComment = {
-      id: getUniqueId(),
-      text: commentText,
-      children: [],
-      parent: parentComment.id,
-    };
-    setCommentList((prevList) => updateCommentList(prevList, newComment));
-    setCommentText("");
-    setShowReply(false);
+    if (commentText) {
+      const newComment = {
+        id: getUniqueId(),
+        text: commentText,
+        children: [],
+        parentId: parentComment.id,
+      };
+      setCommentList((prevList) => updateCommentList(prevList, newComment));
+      setCommentText("");
+      setShowReply(false);
+    }
   };
 
   const handleCommentChange = (e) => {

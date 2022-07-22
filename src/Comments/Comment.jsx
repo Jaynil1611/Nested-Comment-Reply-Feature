@@ -2,31 +2,35 @@ import React, { useState } from "react";
 import AddReply from "./AddReply";
 
 const Comment = (props) => {
-  const { comment, setCommentList } = props;
+  const { commentId, commentList, setCommentList } = props;
   const [showReply, setShowReply] = useState(false);
-  const childLength = comment.children.length;
-
-  const removeComment = (commentList, childToBeRemoved) => {
-    return commentList.filter((comment) => comment.id !== childToBeRemoved.id);
-  };
+  const comment = commentList[commentId];
 
   const updateCommentList = (prevList, currentComment) => {
-    if (currentComment.parent === null) {
-      return removeComment(prevList, currentComment);
+    const updatedComments = prevList;
+    const currentId = currentComment.id;
+    const childComments = updatedComments[currentId].children;
+    const parentId = currentComment.parentId;
+    const parentComment = updatedComments[parentId];
+    if (childComments.length !== 0) {
+      childComments.forEach((id) => delete updatedComments[id]);
     }
-    const updatedList = prevList.map((comment) => {
-      if (comment.id === currentComment.parent) {
-        return {
-          ...comment,
-          children: removeComment(comment.children, currentComment),
-        };
-      }
-      return {
-        ...comment,
-        children: updateCommentList(comment.children, currentComment),
-      };
-    });
-    return updatedList;
+    delete updatedComments[currentId];
+
+    if (parentId === null) {
+      updatedComments.firstLevelIds = prevList.firstLevelIds.filter(
+        (id) => id !== currentId
+      );
+      return { ...updatedComments };
+    }
+    const updatedParentComment = {
+      ...parentComment,
+      children: parentComment.children.filter((id) => id !== currentId),
+    };
+    return {
+      ...updatedComments,
+      [parentId]: updatedParentComment,
+    };
   };
 
   const handleDeleteComment = () => {
@@ -64,16 +68,14 @@ const Comment = (props) => {
             setCommentList={setCommentList}
           />
         )}
-        {childLength > 0 &&
-          comment.children.map((childComment) => {
-            return (
-              <Comment
-                key={childComment.id}
-                comment={childComment}
-                setCommentList={setCommentList}
-              />
-            );
-          })}
+        {comment.children.map((id) => (
+            <Comment
+              key={id}
+              commentId={id}
+              commentList={commentList}
+              setCommentList={setCommentList}
+            />
+          ))}
       </div>
     </>
   );

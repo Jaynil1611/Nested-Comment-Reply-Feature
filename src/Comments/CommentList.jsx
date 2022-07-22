@@ -3,14 +3,20 @@ import AddComment from "./AddComment";
 import Comment from "./Comment";
 
 const CommentList = () => {
-  const [commentList, setCommentList] = useState([]);
+  const [commentList, setCommentList] = useState({
+    firstLevelIds: [],
+  });
   return (
     <div>
       <AddComment setCommentList={setCommentList} />
-      {commentList.map((comment) => {
+      {commentList.firstLevelIds.map((id) => {
         return (
-          <div key={comment.id} className="pl-8 flex flex-col">
-            <Comment comment={comment} setCommentList={setCommentList} />
+          <div key={id} className="pl-8 flex flex-col">
+            <Comment
+              commentId={id}
+              commentList={commentList}
+              setCommentList={setCommentList}
+            />
           </div>
         );
       })}
