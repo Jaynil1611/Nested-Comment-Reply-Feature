@@ -36,7 +36,7 @@ const AddReply = (props) => {
   };
 
   return (
-    <div>
+    <div className="mt-6">
       <input
         type="text"
         placeholder="Enter your reply here"

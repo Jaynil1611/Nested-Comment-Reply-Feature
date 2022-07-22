@@ -1,4 +1,3 @@
-import "./App.css";
 import { CommentList } from "./Comments";
 
 function App() {

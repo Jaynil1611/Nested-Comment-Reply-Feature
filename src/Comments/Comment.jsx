@@ -43,7 +43,7 @@ const Comment = (props) => {
 
   return (
     <>
-      <div className="relative flex justify-center my-4">
+      <div className="relative flex justify-center">
         <div className="text-bold p-2">{comment.text}</div>
         <button
           type="button"
@@ -60,7 +60,7 @@ const Comment = (props) => {
           REPLY
         </button>
       </div>
-      <div className="relative inset-0 left-20 mb-4">
+      <div className="relative inset-0 left-10">
         {showReply && (
           <AddReply
             setShowReply={setShowReply}
@@ -68,14 +68,18 @@ const Comment = (props) => {
             setCommentList={setCommentList}
           />
         )}
-        {comment.children.map((id) => (
-            <Comment
-              key={id}
-              commentId={id}
-              commentList={commentList}
-              setCommentList={setCommentList}
-            />
-          ))}
+        {comment.children.map((id) => {
+          return (
+            <div className="my-8">
+              <Comment
+                key={id}
+                commentId={id}
+                commentList={commentList}
+                setCommentList={setCommentList}
+              />
+            </div>
+          );
+        })}
       </div>
     </>
   );
