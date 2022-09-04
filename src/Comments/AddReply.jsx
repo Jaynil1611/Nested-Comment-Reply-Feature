@@ -3,7 +3,7 @@ import { getUniqueId } from "./utils";
 
 const AddReply = (props) => {
   const { setShowReply, parentComment, setCommentList } = props;
-  const [commentText, setCommentText] = useState("");
+  const [replyText, setReplyText] = useState("");
 
   const updateCommentList = (prevList, newComment) => {
     const updatedParentComment = {
@@ -17,22 +17,22 @@ const AddReply = (props) => {
     };
   };
 
-  const handleAddComment = () => {
-    if (commentText) {
+  const handleAddReply = () => {
+    if (replyText) {
       const newComment = {
         id: getUniqueId(),
-        text: commentText,
+        text: replyText,
         children: [],
         parentId: parentComment.id,
       };
       setCommentList((prevList) => updateCommentList(prevList, newComment));
-      setCommentText("");
+      setReplyText("");
       setShowReply(false);
     }
   };
 
   const handleCommentChange = (e) => {
-    setCommentText(e.target.value);
+    setReplyText(e.target.value);
   };
 
   return (
@@ -41,10 +41,10 @@ const AddReply = (props) => {
         type="text"
         placeholder="Enter your reply here"
         onChange={handleCommentChange}
-        value={commentText}
+        value={replyText}
       />
       <button
-        onClick={handleAddComment}
+        onClick={handleAddReply}
         className="mx-4 p-1 text-bold text-blue-800 border border-blue-600"
       >
         REPLY
