@@ -18,7 +18,6 @@ const AddReply = (props) => {
         children: updateCommentList(comment.children, newComment),
       };
     });
-    console.log({ updatedList });
     return updatedList;
   };
 
@@ -27,7 +26,7 @@ const AddReply = (props) => {
       id: getUniqueId(),
       text: commentText,
       children: [],
-      parent: parentComment.id,
+      parentId: parentComment.id,
     };
     setCommentList((prevList) => updateCommentList(prevList, newComment));
     setCommentText("");

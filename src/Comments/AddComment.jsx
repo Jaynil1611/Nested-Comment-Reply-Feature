@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { getUniqueId } from "./utils";
-/*{
-  id: {}
-}*/
+
 const AddComment = (props) => {
   const { setCommentList } = props;
   const [commentText, setCommentText] = useState("");
@@ -12,7 +10,7 @@ const AddComment = (props) => {
       id: getUniqueId(),
       text: commentText,
       children: [],
-      parent: null,
+      parentId: null,
     };
     setCommentList((prevList) => prevList.concat(newComment));
     setCommentText("");

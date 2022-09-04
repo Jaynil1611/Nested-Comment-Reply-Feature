@@ -11,11 +11,11 @@ const Comment = (props) => {
   };
 
   const updateCommentList = (prevList, currentComment) => {
-    if (currentComment.parent === null) {
+    if (currentComment.parentId === null) {
       return removeComment(prevList, currentComment);
     }
     const updatedList = prevList.map((comment) => {
-      if (comment.id === currentComment.parent) {
+      if (comment.id === currentComment.parentId) {
         return {
           ...comment,
           children: removeComment(comment.children, currentComment),
