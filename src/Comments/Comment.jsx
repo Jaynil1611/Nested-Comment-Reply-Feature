@@ -39,8 +39,10 @@ const Comment = (props) => {
 
   return (
     <>
-      <div className="relative flex justify-center my-4">
-        <div className="text-bold p-2">{comment.text}</div>
+      <div className="relative flex justify-center items-center overflow-hidden">
+        <div className="max-w-[180px] flex-1 break-words text-bold p-2">
+          {comment.text}
+        </div>
         <button
           type="button"
           className="mx-4 p-2 text-bold text-red-800 border border-red-600"
@@ -67,11 +69,13 @@ const Comment = (props) => {
         {childLength > 0 &&
           comment.children.map((childComment) => {
             return (
-              <Comment
-                key={childComment.id}
-                comment={childComment}
-                setCommentList={setCommentList}
-              />
+              <div className="my-8">
+                <Comment
+                  key={childComment.id}
+                  comment={childComment}
+                  setCommentList={setCommentList}
+                />
+              </div>
             );
           })}
       </div>

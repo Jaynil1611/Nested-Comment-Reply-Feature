@@ -9,7 +9,7 @@ const CommentList = () => {
       <AddComment setCommentList={setCommentList} />
       {commentList.map((comment) => {
         return (
-          <div key={comment.id} className="pl-8 flex flex-col">
+          <div key={comment.id} className="my-6 pl-8 flex flex-col">
             <Comment comment={comment} setCommentList={setCommentList} />
           </div>
         );
