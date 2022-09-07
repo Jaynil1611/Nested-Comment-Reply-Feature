@@ -21,7 +21,7 @@ const Comment = (props) => {
       updatedComments.firstLevelIds = prevList.firstLevelIds.filter(
         (id) => id !== currentId
       );
-      return { ...updatedComments };
+      return updatedComments;
     }
     const updatedParentComment = {
       ...parentComment,
@@ -43,8 +43,10 @@ const Comment = (props) => {
 
   return (
     <>
-      <div className="relative flex justify-center">
-        <div className="text-bold p-2">{comment.text}</div>
+      <div className="relative flex justify-center items-center overflow-hidden">
+        <div className="max-w-[180px] flex-1 break-words text-bold p-2">
+          {comment.text}
+        </div>
         <button
           type="button"
           className="mx-4 p-2 text-bold text-red-800 border border-red-600"
@@ -68,7 +70,7 @@ const Comment = (props) => {
             setCommentList={setCommentList}
           />
         )}
-        {comment.children.map((id) => {
+        {comment?.children.map((id) => {
           return (
             <div className="my-8">
               <Comment

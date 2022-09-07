@@ -11,7 +11,7 @@ const CommentList = () => {
       <AddComment setCommentList={setCommentList} />
       {commentList.firstLevelIds.map((id) => {
         return (
-          <div key={id} className="my-4 pl-8 flex flex-col">
+          <div key={id} className="my-6 pl-8 flex flex-col">
             <Comment
               commentId={id}
               commentList={commentList}
