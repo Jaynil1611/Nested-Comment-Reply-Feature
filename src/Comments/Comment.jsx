@@ -21,7 +21,7 @@ const Comment = (props) => {
       updatedComments.firstLevelIds = prevList.firstLevelIds.filter(
         (id) => id !== currentId
       );
-      return updatedComments;
+      return { ...updatedComments };
     }
     const updatedParentComment = {
       ...parentComment,
@@ -72,7 +72,7 @@ const Comment = (props) => {
         )}
         {comment?.children.map((id) => {
           return (
-            <div className="my-8">
+            <div className="my-6">
               <Comment
                 key={id}
                 commentId={id}
