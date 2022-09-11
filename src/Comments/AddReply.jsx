@@ -44,8 +44,9 @@ const AddReply = (props) => {
         value={replyText}
       />
       <button
+        disabled={!replyText}
         onClick={handleAddReply}
-        className="mx-4 p-1 text-bold text-blue-800 border border-blue-600"
+        className="mx-4 p-1 text-bold text-blue-800 border border-blue-600 disabled:opacity-50"
       >
         REPLY
       </button>
