@@ -6,4 +6,4 @@ This repository consists of the code for Nested Comment & Reply Feature
 
 
 ## CodeSandBox Link
-[![Edit nested-comment-reply-feature](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/Jaynil1611/Nested-Comment-Reply-Feature/tree/recursive-comments/?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit recursive-comments](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/recursive-comments-oz4r26?fontsize=14&hidenavigation=1&theme=dark)
