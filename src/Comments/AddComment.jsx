@@ -34,9 +34,10 @@ const AddComment = (props) => {
         value={commentText}
       />
       <button
+        disabled={!commentText}
         type="button"
         onClick={handleAddComment}
-        className="m-4 p-2 text-bold text-white bg-blue-800"
+        className="m-4 p-2 text-bold text-white bg-blue-800 disabled:opacity-50"
       >
         ADD COMMENT
       </button>
